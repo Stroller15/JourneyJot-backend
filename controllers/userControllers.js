@@ -9,6 +9,7 @@ const createToken = _id => {
     );
 };
 
+
 // signup
 export const signupUser = async (req, res) => {
     const { email, password } = req.body;
@@ -16,11 +17,12 @@ export const signupUser = async (req, res) => {
     try {
         const user = await User.signup(email, password);
         const token = createToken(user._id);
-        res.status(200).json({ email, token });
+        res.status(200).json({ email, token, message: 'User Registered Successfully!' });
     } catch (err) {
         res.status(400).json({ error: err.message });
     }
 };
+
 
 // login
 export const loginUser = async (req, res) => {

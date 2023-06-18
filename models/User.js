@@ -21,7 +21,7 @@ const UserSchema = new Schema({
 UserSchema.statics.signup = async function(email, password) {
     if (!email || !password) throw Error('all fields required');
     if (!validator.isEmail(email)) throw Error('invalid email');
-    if (!validator.isStrongPassword(password)) throw Error('password not strong');
+    if (!validator.isStrongPassword(password)) throw Error("password not strong(Use more than 8 character including + 'A-Z' + , special character)");
 
     const exists = await this.findOne({ email });
     if (exists) throw Error('email already registered');
